@@ -1,0 +1,25 @@
+{
+  "name": "edflix-web",
+  "version": "1.0.0",
+  "description": "This is the EdFlix web application.",
+  "main": "main.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohanrohit/edflix-web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohanrohit/edflix-web/issues"
+  },
+  "homepage": "https://github.com/mohanrohit/edflix-web#readme"
+}
