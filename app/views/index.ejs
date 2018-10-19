@@ -1,104 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-    .item-info
-    {
-      border: 1px solid #ddd;
-      /*border-radius: 4px;*/
-      padding: 8px;
-      /*margin: 4px;*/
-    }
-
-    .item-info:hover
-    {
-      border: 1px solid darkcyan;
-    }
-    
-    .item-info .item-title
-    {
-      margin-bottom: 8px;
-    }
-    
-    .item-info .item-comments
-    {
-      margin-bottom: 8px;
-    }
-    
-        .ellipsis
-    {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -o-text-overflow: ellipsis;
-    }
-    
-      /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {height: 1500px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    header, footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    #search-panel {
-      padding: 25px;
-    }
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height: auto;} 
-    }
-  </style>
+  <% include partials/head %>
 </head>
 <body>
 
-<header class="container-fluid">
-  <div>Header Text</div>
-</header>
-
-<div id="search-panel" class="container-fluid panel">
-  <input id="search" type="text" class="form-control" placeholder="Search" data-bind="textInput: search, valueUpdate: 'onkeyup'"></input>
-</div>
+<% include partials/header %>
 
 <div class="container-fluid">
   <div class="row content">
-    <div class="col-sm-2 sidenav">
+    <div id="tag-list" class="col-sm-2 sidenav">
       <h4>Tags</h4>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Science</a></li>
-        <li>Economics</li>
-        <li><a href="#section3">History</a></li>
-        <li><a href="#section3">Photos</a></li>
-      </ul><br>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Blog..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
+      <% tags.forEach(function(tag, index) { %>
+        <span class="tag"><%= tag %></span><br>
+      <% }) %>
     </div>
 
     <div class="col-sm-10" style="padding-left: 0">
+      <div id="search-panel" class="container-fluid panel">
+        <input id="search" type="text" class="form-control" placeholder="Search" data-bind="textInput: search, valueUpdate: 'onkeyup'"></input>
+      </div>
+      
       <% items.forEach(function(item, index) { %>
       <div class="item-info">
         <div class="item-title ellipsis">
@@ -108,9 +30,9 @@
           <small><%= item.comments || "(no comments)" %></small>
         </div>
         <div class="item-attributes ellipsis">
-          <label class="label label-primary">Grade <%= item.grade || 'None' %></label>
-          <label class="label label-warning"><%= item.subject || 'No subject' %></label>
-          <label class="label label-success"><%= item.rating %><i class="fa fa-star"></i></label>
+          <span class="label label-primary">Grade <%= item.grade || 'None' %></span>
+          <span class="label label-warning"><%= item.subject || 'No subject' %></span>
+          <span class="label label-success"><%= item.rating %><i class="fa fa-star"></i></span>
           <% if (item.tags) { %>
             <% item.tags.forEach(function(tag, index) { %>
               <label class="label label-danger"><%= tag %></label>
@@ -126,9 +48,7 @@
   </div>
 </div>
 
-<footer class="container-fluid">
-  <p>Footer Text</p>
-</footer>
+<% include partials/footer %>
 
 </body>
 </html>

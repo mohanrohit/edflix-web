@@ -2,6 +2,11 @@ const express = require("express");
 
 const app = express();
 
+const tags = [
+    "api", "auth", "node", "nodejs", "scotch", "philosophy", "physics", "science",
+    "universe", "aeon", "genetics", "guardian", "nature", "medium", "books"
+];
+
 const items = [
     {
         title: "Building and securing a modern backend API",
@@ -53,7 +58,7 @@ app.set("views", `${__dirname}/app/views`);
 app.use(express.static(`${__dirname}/public`));
 
 app.get("/", (request, response) => {
-    response.render("index", {items: items});
+    response.render("index", {items: items, tags: tags});
 });
 
 app.get("/items", (request, response) => {
