@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require("axios");
 
 const app = express();
 
@@ -7,6 +8,7 @@ const tags = [
     "universe", "aeon", "genetics", "guardian", "nature", "medium", "books"
 ];
 
+/*
 const items = [
     {
         title: "Building and securing a modern backend API",
@@ -51,6 +53,7 @@ const items = [
         rating: 5
     }
 ];
+*/
 
 app.set("view engine", "ejs");
 app.set("views", `${__dirname}/app/views`);
@@ -58,11 +61,13 @@ app.set("views", `${__dirname}/app/views`);
 app.use(express.static(`${__dirname}/public`));
 
 app.get("/", (request, response) => {
-    response.render("index", {items: items, tags: tags});
+    response.render("index");
 });
 
-app.get("/items", (request, response) => {
-    response.render("books", {books: books});
+app.get("/items", async (request, response) => {
+    const result = await axios.get("http://localhost:8080/api/v1/items");
+
+    response.render("items/index", {items: result.data.items, tags: tags});
 });
 
 app.get("/items/:id", (request, response) => {
