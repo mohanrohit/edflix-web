@@ -8,10 +8,13 @@
 <% include partials/header %>
 
 <div class="container-fluid">
-  <p>This is the index page. Click <a href="/items">here</a> to go to the items page.</p>
+  <div class="jumbotron text-center">
+      <% if (user) { %>
+        <p>User is logged in</p>
+      <% } %>
+      <a href="/users/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a> or
+      <a href="/users/signup" class="btn btn-success"><span class="fa fa-user"></span>Signup</a>
+  </div>
 </div>
 
 <% include partials/footer %>
-
-</body>
-</html>
