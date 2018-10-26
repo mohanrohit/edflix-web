@@ -1,6 +1,5 @@
 const express = require("express");
 const axios = require("axios");
-const bcrypt = require("bcrypt-nodejs");
 
 const router = express.Router();
 
